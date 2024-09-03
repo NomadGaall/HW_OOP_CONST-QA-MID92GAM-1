@@ -1,66 +1,71 @@
 package ru.netology.radio;
 
 public class Radio {
-    private int currentRadioStation;
+    private int currentStation;
     private int currentVolume;
 
-    public void setCurrentRadioStation ( int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
-            return;
+    public void next() {
+        if (currentStation != 9) {
+            currentStation++;
+        } else {
+            currentStation = 0;
         }
-        if (newCurrentRadioStation > 9) {
-            return;
-        }
-        currentRadioStation = newCurrentRadioStation;
+
     }
 
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
+    public void prev() {
+        if (currentStation != 0) {
+            currentStation--;
+        } else {
+            currentStation = 9;
+        }
+
     }
 
-    public void setCurrentVolume( int newCurrentVolume) {
-        if (newCurrentVolume > 100) {
+    public void increaseVolume() {
+        if (currentVolume < 100) {
+            currentVolume++;
+        } else {
+            currentVolume = 100;
+        }
+    }
+
+    public void decreaseVolume() {
+        if (currentVolume > 0) {
+            currentVolume--;
+        } else {
+            currentVolume = 0;
+        }
+    }
+
+
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+    public void setCurrentStation(int currentStation) {
+        if (currentStation < 0) {
             return;
         }
-        if (newCurrentVolume < 0) {
+        if (currentStation > 9) {
             return;
         }
-        currentVolume = newCurrentVolume;
+
+        this.currentStation = currentStation;
     }
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void next() {
-        if (currentRadioStation != 9) {
-            currentRadioStation++;
-        } else {
-            currentRadioStation = 0;
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            return;
         }
-    }
+        if (currentVolume > 100) {
+            return;
+        }
 
-    public void prev() {
-        if (currentRadioStation != 0) {
-            currentRadioStation--;
-        } else {
-            currentRadioStation = 9;
-        }
-    }
-
-    public void moreVolume() {
-        if (currentVolume != 100) {
-            currentVolume++;
-        } else {
-            currentVolume = currentVolume;
-        }
-    }
-
-    public void lessVolume() {
-        if (currentVolume != 0) {
-            currentVolume--;
-        } else {
-            currentVolume = currentVolume;
-        }
+        this.currentVolume = currentVolume;
     }
 }
